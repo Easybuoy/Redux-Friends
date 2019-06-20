@@ -1,7 +1,8 @@
-import { GET_FRIENDS } from "../actions/types";
+import { GET_FRIENDS, ADD_FRIEND } from "../actions/types";
 
 const INITIAL_STATE = {
-  friends: []
+  friends: [],
+  newFriend: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         friends: action.payload
+      };
+    case ADD_FRIEND:
+      return {
+        ...state,
+        newFriend: true
       };
 
     default:
