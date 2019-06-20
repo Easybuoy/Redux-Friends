@@ -2,12 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/auth";
 import { Form, Button } from "../../styles/Styles";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 function Login(props) {
-  console.log(props);
-
   if (props.auth.isAuthenticated) {
     props.history.push("/");
+  }
+
+  if (props.error.error.length > 0) {
+    toast.error(props.error.error);
   }
 
   const username = React.createRef();
@@ -16,10 +18,10 @@ function Login(props) {
   const submit = e => {
     e.preventDefault();
     props.loginUser(username.current.value, password.current.value);
-    // toast.success('Login Successfully')
   };
+
   return (
-    <Form  onSubmit={submit}> 
+    <Form onSubmit={submit}>
       <input ref={username} placeholder="Enter Email" type="text" required />
       <input
         ref={password}
@@ -33,7 +35,8 @@ function Login(props) {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  error: state.error
 });
 
 export default connect(
