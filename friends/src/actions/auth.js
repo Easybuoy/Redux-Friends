@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { LOGIN, GET_ERRORS } from "./types";
+import { LOGIN } from "./types";
+import { setError } from "./error";
 
 export const loginUser = (username, password) => dispatch => {
   const payload = {
@@ -14,9 +15,7 @@ export const loginUser = (username, password) => dispatch => {
       localStorage.setItem("token", payload);
       dispatch(login(payload));
     })
-    .catch(err =>
-      dispatch({ type: GET_ERRORS, payload: 'Username or Password Incorrect.' })
-    );
+    .catch(() => dispatch(setError("Username or Password Incorrect.")));
 };
 
 export const login = payload => {

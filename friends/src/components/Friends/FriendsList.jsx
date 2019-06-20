@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Triple } from "react-preloading-component";
-
+import { toast } from "react-toastify";
 import Friend from "./Friend";
 import { CardGroup, H1, PreLoader } from "../../styles/Styles";
 import { getFriends } from "../../actions/friends";
@@ -12,9 +12,13 @@ class FriendsList extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { friends } = this.props.friends;
     const { loading } = this.props.loading;
+    const { error } = this.props.error;
+
+    if (error.length > 0) {
+      toast.error(error);
+    }
 
     if (loading) {
       return (
@@ -40,7 +44,8 @@ class FriendsList extends Component {
 
 const mapStateToProps = state => ({
   friends: state.friends,
-  loading: state.loading
+  loading: state.loading,
+  error: state.error
 });
 
 export default connect(
