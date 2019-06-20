@@ -1,3 +1,18 @@
-const auth = '';
+import { LOGIN } from "../actions/types";
 
-export default auth;
+const INITIAL_STATE = {
+  isAuthenticated: false
+};
+
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case LOGIN:
+      return {
+        ...state,
+        isAuthenticated: true
+      };
+
+    default:
+      return state;
+  }
+};
