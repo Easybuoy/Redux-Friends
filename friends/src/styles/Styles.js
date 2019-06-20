@@ -102,4 +102,8 @@ const Form = styled.form`
   }
 `;
 
-export { CardGroup, Card, Button, H1, Navbar, Form };
+const PreLoader = styled.div`
+  margin: 15rem 0;
+`;
+
+export { CardGroup, Card, Button, H1, Navbar, Form, PreLoader };

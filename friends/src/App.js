@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import rootReducer from "./reducers";
 import { login } from "./actions/auth";
 import Login from "./components/Login/Login";
-import Friends from "./components/Friends/Friends";
+import FriendsList from "./components/Friends/FriendsList";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import Navbar from "./components/Common/Navbar";
 
@@ -34,7 +34,7 @@ function App() {
       <Router>
         <Navbar />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/" component={Friends} />
+        <PrivateRoute exact path="/" component={FriendsList} />
         <ToastContainer autoClose= {3000} position="top-right" hideProgressBar={true} />
 
       </Router>
